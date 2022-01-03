@@ -10,7 +10,7 @@ click.clear()
 
 # Run once to get an overview of system health (put in a while loop for constant monitoring)
 
-print("============================== Process Monitor ======================================\n")
+print("============================== Process Monitor ======================================")
 
 # Fetch the battery information
 battery = psutil.sensors_battery().percent
@@ -22,13 +22,14 @@ print("----Battery Available: %d " % (battery,) + "%")
 
 # Fetch the Network information
 print("----Networks----")
-table = PrettyTable(['Network', 'Status', 'Speed'])
+network_table = PrettyTable(['Network', 'Status', 'Speed'])
+
 for key in psutil.net_if_stats().keys():
     name = key
     up = "Up" if psutil.net_if_stats()[key].isup else "Down"
     speed = psutil.net_if_stats()[key].speed
-    table.add_row([name, up, speed])
-print(table)
+    network_table.add_row([name, up, speed])
+print(network_table)
 
 # Fetch the memory information
 print("----Memory----")
